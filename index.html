@@ -11,25 +11,32 @@
     <!-- google font CDN -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap');
+
         .font-inter {
             font-family: "Inter", sans-serif;
             font-optical-sizing: auto;
             font-style: normal;
-          }
+        }
     </style>
 </head>
 
 <body class="font-inter container mx-auto w-[90%]">
     <header>
-        <nav class="flex justify-between items-center p-6 border-b-2">
-            <img src="assets/Logo.png" alt="Logo">
-            <h4 class="p-3 rounded-lg bg-gray-200 text-lg font-medium">Sort by view</h4>
+        <nav class="flex justify-between items-center p-6 border-b-2 border-[#17171720]">
+            <img class="w-[140px]" src="assets/Logo.png" alt="Logo">
+            <h4 class="p-2 rounded-lg bg-[#25252520] text-lg font-medium">Sort by view</h4>
             <button class="btn bg-red-500 text-white text-lg font-medium">Blog</button>
         </nav>
     </header>
     <main>
-
+        <nav id="categories-container" class="flex items-center justify-center gap-4 p-6">
+            <div>
+                <button class="btn btn-md bg-red-500 text-white">All</button>
+            </div>
+        </nav>
     </main>
+
+    <script src="scripts/script.js"></script>
 </body>
 
 </html>
