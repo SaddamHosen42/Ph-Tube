@@ -14,6 +14,15 @@ function loadVideos() {
         //send data to displayCategories function 
         .then(data => displayVideos(data.videos))
 }
+const loadCategoriesVideos = (id) => {
+    //console.log(id);
+    const URL=`https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
+    //console.log(URL);
+    fetch(URL)
+        .then(response => response.json())
+        .then(data => displayVideos(data.category));
+        
+}
 
 //normal function
 function displayCategories(categories) {
@@ -23,7 +32,7 @@ function displayCategories(categories) {
     for (let item of categories) {
         const categoryDiv = document.createElement('div');
         categoryDiv.innerHTML = `
-            <button class="btn btn-md hover:bg-red-500 hover:text-white">${item.category}</button>
+            <button onclick="loadCategoriesVideos(${item.category_id})" class="btn btn-md hover:bg-red-500 hover:text-white">${item.category}</button>
         `;
         categoryContainer.appendChild(categoryDiv);
 
@@ -34,9 +43,11 @@ function displayCategories(categories) {
 const displayVideos = (videos) => {
     //get the parent element
     const videoContainer = document.getElementById('videos-container');
+    videoContainer.innerHTML = '';
+    //loop through all the videos
     videos.forEach(video => {             //for of loop use o kora jayto
-       // console.log(video);
-        
+        // console.log(video);
+
         const videoDiv = document.createElement('div');
         videoDiv.innerHTML = `
                         <div class="card bg-base-100">
@@ -64,7 +75,7 @@ const displayVideos = (videos) => {
                 </div>
             </div>
         `;
-        videoContainer.appendChild(videoDiv);   
+        videoContainer.appendChild(videoDiv);
 
     });
 
@@ -72,8 +83,4 @@ const displayVideos = (videos) => {
 
 }
 
-
-
-
 loadCategories();
-loadVideos();
