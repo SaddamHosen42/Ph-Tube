@@ -17,6 +17,10 @@
             font-optical-sizing: auto;
             font-style: normal;
         }
+        .active {
+            background-color: #f00;
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -25,16 +29,20 @@
         <nav class="flex justify-between items-center p-6 border-b-2 border-[#17171720]">
             <img class="w-[140px]" src="assets/Logo.png" alt="Logo">
             <h4 class="p-2 rounded-sm bg-[#25252520] text-lg font-medium">Sort by view</h4>
-            <button class="btn bg-red-500 text-white text-lg font-medium">Blog</button>
+            <button class=" bg-red-500 text-white btn text-lg font-medium">Blog</button>
         </nav>
     </header>
     <main>
         <nav id="categories-container" class="flex items-center justify-center gap-4 p-6">
             <div>
-                <button onclick="loadVideos()" class="btn btn-md bg-red-500 text-white">All</button>
+                <button id="btn-all" onclick="loadVideos()" class="btn btn-md  hover:bg-red-500 hover:text-white">All</button>
             </div>
         </nav>
         <section id="videos-container" class=" grid grid-cols-4 gap-4">
+            <div class="flex flex-col items-center justify-center col-span-4 mt-20 space-y-4">
+                <img src="assets/Icon.png" alt="">
+                <h1 class=" text-center text-2xl font-bold w-[350px]">Oops!! Sorry, There is no content here</h1>
+            </div>
         </section>
     </main>
 

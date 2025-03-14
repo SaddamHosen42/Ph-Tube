@@ -12,16 +12,31 @@ function loadVideos() {
         //convert data to json
         .then(response => response.json())
         //send data to displayCategories function 
-        .then(data => displayVideos(data.videos))
+        .then(data => {
+            removeActiveClass();
+            document.getElementById('btn-all').classList.add('active');
+            displayVideos(data.videos)
+        })
+}
+function removeActiveClass() {
+    const btns = document.querySelectorAll('.active');
+    btns.forEach(btn => {
+        btn.classList.remove('active');
+    })
 }
 const loadCategoriesVideos = (id) => {
     //console.log(id);
-    const URL=`https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
+    const URL = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
     //console.log(URL);
     fetch(URL)
         .then(response => response.json())
-        .then(data => displayVideos(data.category));
-        
+        .then(data =>{
+            removeActiveClass();
+            const clickedBtn = document.getElementById(`btn-${id}`);
+            clickedBtn.classList.add('active');
+            displayVideos(data.category)
+        });
+
 }
 
 //normal function
@@ -32,8 +47,9 @@ function displayCategories(categories) {
     for (let item of categories) {
         const categoryDiv = document.createElement('div');
         categoryDiv.innerHTML = `
-            <button onclick="loadCategoriesVideos(${item.category_id})" class="btn btn-md hover:bg-red-500 hover:text-white">${item.category}</button>
+            <button id="btn-${item.category_id}" onclick="loadCategoriesVideos(${item.category_id})" class="btn btn-md hover:bg-red-500 hover:text-white">${item.category}</button>
         `;
+
         categoryContainer.appendChild(categoryDiv);
 
     }
@@ -44,6 +60,13 @@ const displayVideos = (videos) => {
     //get the parent element
     const videoContainer = document.getElementById('videos-container');
     videoContainer.innerHTML = '';
+    if (videos.length === 0) {
+        videoContainer.innerHTML = `
+            <div class="flex flex-col items-center justify-center col-span-4 mt-20 space-y-4">
+                <img src="assets/Icon.png" alt="">
+                <h1 class=" text-center text-2xl font-bold w-[350px]">Oops!! Sorry, There is no content here</h1>
+            </div>`;
+    }
     //loop through all the videos
     videos.forEach(video => {             //for of loop use o kora jayto
         // console.log(video);
