@@ -73,7 +73,7 @@ const displayVideos = (videos) => {
 
         const videoDiv = document.createElement('div');
         videoDiv.innerHTML = `
-                        <div class="card bg-base-100">
+                <div class="card bg-base-100">
                 <figure class="h-[180px] relative">
                     <img src="${video.thumbnail}" alt="" />
                     <span class="bg-[#171717] text-white rounded-sm px-3 absolute bottom-3 right-4">3hrs 56 min ago</span>
@@ -90,7 +90,7 @@ const displayVideos = (videos) => {
                     <div class="info space-y-1">
                         <h2 class="card-title">${video.title}</h2>
                         <p class="text-sm flex gap-1 text-gray-500">${video.authors[0].profile_name}
-                            <img class="w-5" src="https://cdn-icons-png.flaticon.com/128/7641/7641727.png" alt="">
+                            ${video.authors[0].verified ? '<img class="w-5" src="https://cdn-icons-png.flaticon.com/128/7641/7641727.png">' : ''}
                         </p>
                         <p class="text-sm text-gray-500">${video.others.views}</p>
                     </div>
